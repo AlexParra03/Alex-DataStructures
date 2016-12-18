@@ -31,11 +31,35 @@ public class AlexArrayList<T> implements List<T> {
 			}
 			this.data = newData;
 			this.size = newSize;
+			manageSlots(slotsToCheck);
 		}
 		
 	}
 	
 
+	private void shiftArray(int start, int emptySlots){
+		manageSlots(emptySlots);
+		if(start >= 0 && start < index){
+			int newSize = this.index - start + emptySlots;
+			T[] endChunk = (T[]) new Object[newSize];
+			for(int i=0; i<newSize; i++){
+				
+				if(i< emptySlots){
+					endChunk[i] = null ;
+				} else {
+					endChunk[i] = this.data[start+i-emptySlots];
+				}
+			}
+			
+			for(int i=0; i<newSize; i++){
+				this.data[start+i] = endChunk[i]; 
+			}
+			
+			
+		}
+		
+		
+	}
 	
 	@Override
 	public boolean add(T arg0) {
@@ -48,7 +72,7 @@ public class AlexArrayList<T> implements List<T> {
 	@Override
 	public void add(int arg0, T arg1) {
 		if(arg0 >= 0 && arg0 <= index){
-			manageSlots(1);
+			shiftArray(arg0, 1);
 			this.data[arg0] = arg1;
 		}
 		
@@ -61,6 +85,7 @@ public class AlexArrayList<T> implements List<T> {
 		Iterator i = arg0.iterator();
 		while(i.hasNext()){
 			this.data[index] = (T) i.next();
+			index++;
 		}
 		return true;
 	}
@@ -134,6 +159,7 @@ public class AlexArrayList<T> implements List<T> {
 
 	@Override
 	public int lastIndexOf(Object arg0) {
+		//Not fully implemented yet
 		return indexOf(arg0);
 	}
 
@@ -156,6 +182,7 @@ public class AlexArrayList<T> implements List<T> {
 			for(int i=iElement; i<this.index; i++ ){
 				this.data[i] = this.data[i+1];
 			}
+			index--;
 			return true;
 		}
 		return false;
@@ -170,6 +197,7 @@ public class AlexArrayList<T> implements List<T> {
 			for(int i=iElement; i<this.index; i++ ){
 				this.data[i] = this.data[i+1];
 			}
+			index--;
 		}
 		return element;
 	}
@@ -188,14 +216,15 @@ public class AlexArrayList<T> implements List<T> {
 
 	@Override
 	public T set(int arg0, T arg1) {
-		// TODO Auto-generated method stub
-		return null;
+		if(arg0 >= 0 && arg0 <= index){
+			this.data[arg0] = arg1;
+		}
+		return arg1;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.index;
 	}
 
 	@Override
