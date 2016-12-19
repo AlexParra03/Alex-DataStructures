@@ -13,7 +13,8 @@ public class AlexArrayList<T> implements List<T> {
 	
 	public AlexArrayList(){
 		data = null;
-		size = 0;
+		size = 5;
+		data = (T[]) new Object[this.size];
 		index = 0;
 	}
 	
@@ -21,11 +22,9 @@ public class AlexArrayList<T> implements List<T> {
 	private void manageSlots(int slotsToCheck ){
 		if( this.index + slotsToCheck >= (size-1) ){
 			//Grow by half, x1.5
-			int newSize = 1;
-			if(this.size != 0){
-				newSize = (int) (1.5 * this.size);
-			}
-			T[] newData = (T[]) new Object[this.size];
+			int newSize = (int) (1.5 * this.size);
+			
+			T[] newData = (T[]) new Object[newSize];
 			for(int i=0; i<this.size; i++){
 				newData[i] = this.data[i];
 			}
@@ -44,7 +43,7 @@ public class AlexArrayList<T> implements List<T> {
 			T[] endChunk = (T[]) new Object[newSize];
 			for(int i=0; i<newSize; i++){
 				
-				if(i< emptySlots){
+				if(i< emptySlots-1){
 					endChunk[i] = null ;
 				} else {
 					endChunk[i] = this.data[start+i-emptySlots];
@@ -74,6 +73,7 @@ public class AlexArrayList<T> implements List<T> {
 		if(arg0 >= 0 && arg0 <= index){
 			shiftArray(arg0, 1);
 			this.data[arg0] = arg1;
+			index++;
 		}
 		
 	}
