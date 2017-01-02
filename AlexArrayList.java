@@ -68,6 +68,11 @@ public class AlexArrayList<T> implements List<T> {
 		return true;
 	}
 
+	public void replace(T e, int i){
+		this.data[i] = e;
+		
+	}
+	
 	@Override
 	public void add(int arg0, T arg1) {
 		if(arg0 >= 0 && arg0 <= index){
