@@ -11,7 +11,7 @@ public class LispCalculator {
     private static String operation;
     
     /*
-    TODO: Call the recursive function to process the operation
+    Call the recursive function to process the operation
     */
     public double enter(String operation){
         //Setting global helpers
@@ -23,7 +23,7 @@ public class LispCalculator {
     
     
     /*
-    TODO: Using recursive stack call to compute operands and return the total value of the operation
+    Using recursive stack call to compute operands and return the total value of the operation
     Storing operands in a list, and call the compute function based on the operation
     */
     public double recursiveComputation(){
@@ -66,7 +66,7 @@ public class LispCalculator {
     /*
     @param operator: the type of computing arithmetic gate
     @param operands: digits to be processed
-    TODO: Compute all the operands with the correct operation
+    Compute all the operands with the correct operation
     */
     private double arithmetic(char operator, ArrayList<Double> operands){
         switch(operator){
@@ -87,7 +87,7 @@ public class LispCalculator {
     
     /*
     @param operands: numbers to be computed
-    TODO: Multiply the contained numbers
+    Multiply the contained numbers
     */
     private double multiply(ArrayList<Double> operands){
         if(operands.size() == 0){
@@ -103,7 +103,7 @@ public class LispCalculator {
     
         /*
     @param operands: numbers to be computed
-    TODO: Divide the contained numbers
+    Divide the contained numbers
     */
     private double divide(ArrayList<Double> operands){
         if(operands.size() == 0){
@@ -122,7 +122,7 @@ public class LispCalculator {
     
         /*
     @param operands: numbers to be computed
-    TODO: Add the contained numbers
+     Add the contained numbers
     */
     private double add(ArrayList<Double> operands){
         if(operands.size() == 0){
@@ -138,7 +138,7 @@ public class LispCalculator {
     
         /*
     @param operands: numbers to be computed
-    TODO: Subtract the contained numbers
+    Subtract the contained numbers
     */
     private double subtract(ArrayList<Double> operands){
         if(operands.size() == 0){
